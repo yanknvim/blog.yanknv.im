@@ -1,0 +1,41 @@
+---
+import "../styles/global.css";
+
+const { title } = Astro.props;
+---
+
+<html lang="ja">
+    <head>
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>blog.uneu.net - {title}</title>
+
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<link rel="icon" href="/favicon.ico" />
+		<meta name="generator" content={Astro.generator} />
+    </head>
+
+    <body>
+        <header>
+            <nav class="navbar bg-base-100 shadow-sm">
+                <div class="flex-1">
+                    <a class="btn btn-ghost text-xl" href="/">blog.uneu.net</a>
+                </div>
+
+                <div class="flex-none">
+                </div>
+            </nav>
+        </header>
+
+        <div class="container mx-auto py-4">
+            <main>
+                <slot />
+            </main>
+
+            <footer>
+                <div class="divider"/>
+                <p>© 2026 yank.nvim</p>
+            </footer>
+        </div>
+    </body>
+</html>

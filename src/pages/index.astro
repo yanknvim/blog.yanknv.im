@@ -1,17 +1,22 @@
 ---
+import Base from "../layouts/Base.astro";
 
+const matches = import.meta.glob("../pages/posts/*.md", { eager: true });
+const posts = Object.values(matches);
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1>Astro</h1>
-	</body>
-</html>
+<Base title="Home">
+    <div class="flex flex-col gap-8">
+        {posts.map(post => {
+            let url = post.url;
+            let title = post.frontmatter.title;
+            let date = new Date(post.frontmatter.date);
+            return (
+                <article class="px-4 py-2">
+                    <a class="text-2xl font-bold" href={url}>{title}</a>
+                    <p class="text-lg">{date.getFullYear() + "/" + date.getMonth() + "/" + date.getDay()}</p>
+                </article>
+            )
+        })}
+    </div>
+</Base>
